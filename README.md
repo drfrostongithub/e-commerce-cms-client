@@ -24,5 +24,5 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-Need to make delete too fucking shit and main page not only jumbotron!
+Need to make delete too and main page not only jumbotron!
 on 1 hour 4 min, sleep 
