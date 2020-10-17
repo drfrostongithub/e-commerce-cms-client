@@ -7,10 +7,16 @@ import NotFound from '../views/NotFound.vue'
 import RandomProduct from '../components/RandomProduct.vue'
 import AdsProduct from '../components/AdsProduct.vue'
 import LoginPage from '../views/LoginPage.vue'
+import Home from '../views/Home'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
   {
     path: '/login',
     name: 'LoginPage',

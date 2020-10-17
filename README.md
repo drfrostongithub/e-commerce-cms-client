@@ -23,4 +23,4 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-deployed to : https://e-kommerce.web.app
+Deployed to : https://e-kommerce.web.app
