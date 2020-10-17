@@ -64,6 +64,9 @@
             <h1 class="text-center">Add New Product</h1>
             <img src="../assets/aset1.png" alt="image" class="w-100">
         </div>
+        <div class="col-6" v-if="error" id="error">
+          <p class="text-danger text-center">{{error}}</p>
+        </div>
     </section>
 </template>
 
@@ -78,7 +81,8 @@ export default {
       img_url: '',
       description: '',
       price: '',
-      stock: ''
+      stock: '',
+      error: ''
     }
   },
   methods: {
@@ -92,19 +96,22 @@ export default {
           description: this.description,
           price: this.price,
           stock: this.stock
+        },
+        headers: {
+          access_token: localStorage.getItem('access_token')
         }
       })
         .then(({ data }) => {
-          console.log(data)
           this.name = ''
           this.img_url = ''
           this.description = ''
           this.price = ''
           this.stock = ''
-          this.$router.push('/')
+          this.$router.push('/dashboard')
         })
         .catch(err => {
           console.log(err)
+          this.error = err.response.data.msg
         })
     }
   }
@@ -112,5 +119,10 @@ export default {
 </script>
 
 <style>
-
+#add-page{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#error{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 </style>

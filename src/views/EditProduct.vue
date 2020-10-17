@@ -64,11 +64,13 @@
             <h1 class="text-center">Edit New Product</h1>
             <img src="../assets/aset1.png" alt="image" class="w-100">
         </div>
+        <div class="col-6" v-if="error" id="error">
+          <p class="text-danger text-center">{{error}}</p>
+        </div>
     </section>
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
   name: 'EditProduct',
@@ -78,47 +80,46 @@ export default {
       img_url: '',
       description: '',
       price: '',
-      stock: ''
+      stock: '',
+      error: ''
+    }
+  },
+  computed: {
+    selectedProduct () {
+      return this.$store.state.selectedProduct
+    }
+  },
+  watch: {
+    selectedProduct () {
+      // ini ke trigger kalau selectedProduct berubah
+      this.name = this.selectedProduct.name
+      this.img_url = this.selectedProduct.img_url
+      this.description = this.selectedProduct.description
+      this.price = this.selectedProduct.price
+      this.stock = this.selectedProduct.stock
     }
   },
   methods: {
     fetchProductById () {
       const { id } = this.$route.params
-      axios({
-        method: 'GET',
-        url: 'http://localhost:3000/products/' + id
-      })
-        .then(({ data }) => {
-          this.name = data.name
-          this.img_url = data.img_url
-          this.description = data.description
-          this.price = data.price
-          this.stock = data.stock
-        })
-        .catch(err => {
-          if (err.response.status === 404) {
-            this.$router.push({ name: 'NotFound' })
-          }
-        })
+      this.$store.dispatch('fetchProductById', id)
     },
     editProduct () {
       const { id } = this.$route.params
-      axios({
-        method: 'PUT',
-        url: 'http://localhost:3000/products/' + id,
-        data: {
-          name: this.name,
-          img_url: this.img_url,
-          description: this.description,
-          price: this.price,
-          stock: this.stock
-        }
-      })
+      const payload = {
+        id,
+        name: this.name,
+        img_url: this.img_url,
+        description: this.description,
+        price: this.price,
+        stock: this.stock
+      }
+      this.$store.dispatch('editProduct', payload)
         .then(({ data }) => {
-          this.$router.push({ name: 'Home' })
+          this.$router.push({ name: 'Dashboard' })
         })
         .catch(err => {
-          console.log(err)
+          this.error = err.response.data.msg
         })
     }
   },
@@ -129,5 +130,7 @@ export default {
 </script>
 
 <style>
-
+#add-page{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 </style>

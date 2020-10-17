@@ -12,7 +12,7 @@ export default {
   props: ['aboutMessage'],
   methods: {
     changeMessage () {
-      this.$emit('changeMessage', 'terserah')
+      this.$emit('changeMessage', 'This application was built by using Vue.js')
     }
   }
 }

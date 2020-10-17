@@ -10,7 +10,7 @@ export default {
   name: 'About',
   data () {
     return {
-      message: 'Hello'
+      message: 'Hello stranger!'
     }
   },
   components: {

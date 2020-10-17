@@ -1,19 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Dashboard from '../views/Dashboard.vue'
 import AddProduct from '../views/AddProduct.vue'
 import EditProduct from '../views/EditProduct.vue'
 import NotFound from '../views/NotFound.vue'
 import RandomProduct from '../components/RandomProduct.vue'
 import AdsProduct from '../components/AdsProduct.vue'
+import LoginPage from '../views/LoginPage.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/login',
+    name: 'LoginPage',
+    component: LoginPage
+  },
+  {
     path: '/dashboard',
-    name: 'Home',
-    component: Home,
+    name: 'Dashboard',
+    component: Dashboard,
     children: [
       {
         path: 'random',

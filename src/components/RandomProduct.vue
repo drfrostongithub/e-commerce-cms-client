@@ -3,39 +3,29 @@
     <img :src="product.img_url" alt="poster" class="mr-3" width="150">
     <div class="media-body">
       <h5>{{ product.name }}</h5>
-      <p>{{ product.price }}</p>
+      <p>USD {{ product.price }}</p>
+      <p class="text-info">{{ product.description }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
   name: 'RandomProduct',
   data () {
     return {
-      product: {},
-      length: ''
+    }
+  },
+  computed: {
+    product () {
+      return this.$store.state.product
     }
   },
   methods: {
-    fetchProduct () {
-      const randomId = Math.ceil(Math.random() * 3)
-      axios({
-        method: 'GET',
-        url: 'http://localhost:3000/products/' + randomId
-      })
-        .then(({ data }) => {
-          this.product = data
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
   },
   created () {
-    this.fetchProduct()
+    this.$store.dispatch('fetchProduct')
   }
 }
 </script>
