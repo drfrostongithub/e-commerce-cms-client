@@ -89,7 +89,7 @@ export default {
     addProduct () {
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/products',
+        url: 'https://fierce-hollows-88977.herokuapp.com/products',
         data: {
           name: this.name,
           img_url: this.img_url,

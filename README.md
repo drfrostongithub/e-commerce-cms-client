@@ -23,6 +23,4 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-
-Need to make delete too and main page not only jumbotron!
-also need sleep 
+deployed to : https://e-kommerce.web.app

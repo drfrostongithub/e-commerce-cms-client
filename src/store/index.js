@@ -33,7 +33,7 @@ export default new Vuex.Store({
   actions: {
     fetchProducts (context) {
       axios({
-        url: 'http://localhost:3000/products',
+        url: 'https://fierce-hollows-88977.herokuapp.com/products',
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -50,7 +50,7 @@ export default new Vuex.Store({
       const randomId = Math.ceil(Math.random() * this.state.products.length)
       axios({
         method: 'GET',
-        url: 'http://localhost:3000/products/' + randomId,
+        url: 'https://fierce-hollows-88977.herokuapp.com/products/' + randomId,
         headers: {
           access_token: localStorage.getItem('access_token')
         }
@@ -65,7 +65,7 @@ export default new Vuex.Store({
     fetchProductById (context, id) {
       axios({
         method: 'GET',
-        url: 'http://localhost:3000/products/' + id,
+        url: 'https://fierce-hollows-88977.herokuapp.com/products/' + id,
         headers: {
           access_token: localStorage.getItem('access_token')
         }
@@ -82,7 +82,7 @@ export default new Vuex.Store({
     editProduct (context, payload) {
       return axios({
         method: 'PUT',
-        url: 'http://localhost:3000/products/' + payload.id,
+        url: 'https://fierce-hollows-88977.herokuapp.com/products/' + payload.id,
         headers: {
           access_token: localStorage.getItem('access_token')
         },
@@ -98,7 +98,7 @@ export default new Vuex.Store({
     login (context, payload) {
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/users/login',
+        url: 'https://fierce-hollows-88977.herokuapp.com/users/login',
         data: {
           email: payload.email,
           password: payload.password
@@ -118,7 +118,7 @@ export default new Vuex.Store({
     deleteProduct (context, payload) {
       return axios({
         method: 'DELETE',
-        url: 'http://localhost:3000/products/' + payload,
+        url: 'https://fierce-hollows-88977.herokuapp.com/products/' + payload,
         headers: {
           access_token: localStorage.getItem('access_token')
         }
