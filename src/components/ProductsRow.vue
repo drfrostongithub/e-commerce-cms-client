@@ -12,12 +12,20 @@
             <button @click="toEditProduct(product.id)" class="btn btn-outline-info btn-sm">Edit</button>
             <button @click="deleteProduct(product.id)" class="btn btn-outline-danger btn-sm">Delete</button>
         </td>
+        <div class="col-6" v-if="error" id="error">
+          <p class="text-danger text-center">{{error}}</p>
+        </div>
     </tr>
 </template>
 
 <script>
 export default {
   name: 'ProductsRow',
+  data () {
+    return {
+      error: ''
+    }
+  },
   props: ['product'],
   methods: {
     toEditProduct (id) {
@@ -31,7 +39,7 @@ export default {
             this.$store.dispatch('fetchProducts')
           })
           .catch(err => {
-            console.log(err)
+            this.error = err.response.data.msg
           })
       }
     }
